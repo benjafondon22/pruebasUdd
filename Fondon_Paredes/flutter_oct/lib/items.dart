@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_oct/theme.dart';
 
-
-//AHORA LA PANTALLA DE DETALLES ES INDEPENDIENTE
-//SE CREA UNA CLASE DETAILSCREENDATA, CON DOS ATRIBUTOS O PARÁMETROS
 class DetailScreenData {
   final String itemName;
   final String description;
@@ -41,222 +38,6 @@ Widget buildDetailScreen(BuildContext context, DetailScreenData data) {
   );
 }
 
-//SE LE AGREGARON ATRIBUTOS PARA QUE SEA DINÁMICA
-
-Widget createCustomCard(
-  BuildContext context,
-  String groupName,
-  String imagePath,
-  String title,
-  String description,
-) {
-  void showBottomSheet(BuildContext context) {
-    showModalBottomSheet<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          height: 180,
-          color: Colors.white,
-          child: const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('BottomSheet'),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  return Card(
-    elevation: 1,
-    margin: const EdgeInsets.all(0),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(0),
-    ),
-    child: Container(
-      height: 460,
-      color: Colors.grey,
-      child: Column(
-        children: [
-          Container(
-            color: Colors.white,
-            height: 72,
-            padding: const EdgeInsets.only(left: 10),
-            child: ListTile(
-              contentPadding: const EdgeInsets.fromLTRB(2, 4, 8, 4),
-              leading: CircleAvatar(
-                backgroundImage: AssetImage(imagePath),
-              ),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.black, // Corrección aquí
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.more_vert),
-                    onPressed: () {
-                      showBottomSheet(context);
-                    },
-                    padding: const EdgeInsets.only(top: 12),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(imagePath),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: SingleChildScrollView(
-                child: Container(
-                  color: Colors.grey,
-                  padding: const EdgeInsets.all(0),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            color: Colors.white,
-            height: 100,
-            child: Container(
-              margin: const EdgeInsets.only(top: 12),
-              alignment: Alignment.topLeft,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(width: 16),
-                  Icon(
-                    Icons.favorite_outline,
-                    color: Colors.black,
-                  ),
-                  SizedBox(width: 12),
-                  Icon(
-                    Icons.chat_bubble_outline,
-                    color: Colors.black,
-                  ),
-                  SizedBox(width: 12),
-                  Icon(
-                    Icons.send,
-                    color: Colors.black,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-Widget novedadesItem() {
-  return ListTile(
-    leading: CircleAvatar(
-      backgroundColor: MyTheme.lightTheme().colorScheme.onPrimaryContainer,
-    ),
-    title: const Text('Actualizacion'),
-    subtitle: const Text('Hoy, 10:15 AM'),
-    trailing: const Icon(Icons.more_vert),
-  );
-}
-
-Widget llamadasItem(BuildContext context, String title) {
-  const time = '15 de octubre, 12:30';
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => buildDetailScreen(
-            context,
-            DetailScreenData(title, 'Descripción de $title'),
-          ),
-        ),
-      );
-    },
-    child: ListTile(
-      leading: const CircleAvatar(
-        // backgroundColor: MyTheme.lightTheme().colorScheme.onPrimaryContainer,
-        backgroundImage: AssetImage(
-            'assets/1.jpg'), // Carga la imagen '1.jpg' en el CircleAvatar
-      ),
-      title: Text(title),
-      subtitle: Row(
-        children: [
-          Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.identity()..scale(-1.0, -1.0, 1.0),
-            child: const Icon(Icons.arrow_outward, size: 16),
-          ),
-          const SizedBox(width: 4),
-          const Text(time, style: TextStyle(fontSize: 12)),
-        ],
-      ),
-      trailing: const Icon(Icons.call),
-    ),
-  );
-}
-
-class Card3 extends StatelessWidget {
-  const Card3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 10,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            height: 40,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10.0),
-                topRight: Radius.circular(10.0),
-              ),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.only( top: 16.0, right:156),
-              child: Icon(Icons.search, color: const Color(0xFF6200ed)),
-            ),
-          ),
-          Container(
-            height: 64,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10.0),
-                bottomRight: Radius.circular(10.0),
-              ),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.only(left: 16.0, top: 16.0),
-              child: Text('Texto y mas texto posible'),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class Card1 extends StatelessWidget {
   const Card1({super.key});
 
@@ -272,8 +53,9 @@ class Card1 extends StatelessWidget {
         children: [
           Container(
             height: 45,
+            //color: Color.fromARGB(255, 255, 27, 27),
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10.0),
                 topRight: Radius.circular(10.0),
@@ -282,13 +64,23 @@ class Card1 extends StatelessWidget {
 
             
             child: const Padding(
-              padding: EdgeInsets.only(left: 16.0, top: 16.0),
-              child: Text(
-                'Mi cuenta MACH',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                ),
+              padding: EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Mi cuenta MACH',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 24,
+                    ),
+                  ),
+                  Icon(
+                    Icons.share,
+                    color: Colors.black, // Ajusta el color según sea necesario
+                    size: 24, // Ajusta el tamaño según sea necesario
+                  ),
+                ],
               ),
             ),
 
@@ -325,7 +117,7 @@ class Card1 extends StatelessWidget {
                 'Saldo Disponible',
                 style: TextStyle(
                   color:
-                      const Color(0xFF6200ed), // Color en formato hexadecimal
+                      Color(0xFF6200ed), // Color en formato hexadecimal
                   fontSize: 20,
                 ),
               ),
@@ -339,15 +131,19 @@ class Card1 extends StatelessWidget {
             ),
             child: const Padding(
               padding: EdgeInsets.only(left: 16.0, top: 8.0),
-              child: Text(
-                '1.000',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color:
-                      const Color(0xFF6200ed), // Color en formato hexadecimal
-                  fontSize: 32,
+              
+              child: Row(
+              children: [
+                Icon(Icons.attach_money,color: Color(0xFF6200ed),size: 32.0),
+                SizedBox(width: 8.0), // Espaciado entre el icono y el texto
+                Text(
+                  "1.000",
+                  style: TextStyle(fontSize: 32.0, color: Color(0xFF6200ed)),
+                  
+
                 ),
-              ),
+              ],
+            ),
             ),
           ),
 
@@ -407,31 +203,48 @@ class Card4 extends StatelessWidget {
             ),
             width: double.infinity,
             height: 100,
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
+                  padding: EdgeInsets.only(left: 16.0),
                   child: Icon(
                     Icons.currency_exchange,
-                    color:  Color(0xFF6200ed),
+                    color: Color(0xFF6200ed),
                     size: 50,
                   ),
                 ),
-                const Padding(
-                  // Ajusta el espacio entre el ícono y el texto
-                  padding: EdgeInsets.only(left: 12.0),
-                  child: Text(
-                    'Compra o Paga por MACH',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
+                Padding(
+                  padding: EdgeInsets.only(left: 32.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Cobrar o Pagar por MACH',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        'Envía y recibe pagos de forma',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                      Text(
+                        'fácil y rápida',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                // const SizedBox(width: 4),
-                // const Text(time, style: TextStyle(fontSize: 12)),
-                const Spacer(),
+                Spacer(),
               ],
             ),
           ),
@@ -441,7 +254,91 @@ class Card4 extends StatelessWidget {
   }
 }
 
-Widget Item(BuildContext context, String title) {
+Widget cardsMedium(BuildContext context, String text, String nombreIcono ) {
+  
+IconData icono;
+
+// Asigna un icono diferente basado en el nombre del grupo
+  switch (nombreIcono) {
+    case 'qr':
+      icono = Icons.qr_code_2;
+      break;
+    case 'creditcard':
+      icono = Icons.credit_card;
+      break;
+    case 'billete':
+      icono = Icons.payments;
+      break;
+      case 'regalo':
+      icono = Icons.redeem;
+      break;
+
+      case 'cadena':
+      icono = Icons.link;
+      break;
+      
+      case 'atm':
+      icono = Icons.local_atm;
+      break;
+      case 'lenguaje':
+      icono = Icons.language;
+      break;
+    default:
+      icono = Icons.error; // Icono predeterminado para casos no manejados
+  }
+
+// Crea el Icon fuera del Container
+  Icon iconWidget = Icon(icono, size: 32.0, color: MyTheme.lightTheme().colorScheme.primary);
+
+    return Container(
+    width: 138,
+    child: Card(
+      elevation: 10,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            height: 48,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10.0),
+                topRight: Radius.circular(10.0),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0, top: 16.0),
+              child: Row(
+                children: [
+                  iconWidget,
+                ],
+              ),
+            ),
+          ),
+          Container(
+            height: 64,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(10.0),
+                bottomRight: Radius.circular(10.0),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0, top: 8.0),
+              child: Text(text),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+  }
+
+Widget item(BuildContext context, String title) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -469,7 +366,7 @@ Widget Item(BuildContext context, String title) {
   );
 }
 
-Widget Item2(BuildContext context, String title) {
+Widget item2(BuildContext context, String title) {
   const time = '°°°°°°4845';
   return GestureDetector(
     onTap: () {
@@ -484,7 +381,7 @@ Widget Item2(BuildContext context, String title) {
       );
     },
     child: ListTile(
-      leading: Image(
+      leading: const Image(
         image: AssetImage('assets/tarjeta1.png'),
       ),
       title: Text(title),
@@ -503,7 +400,7 @@ Widget Item2(BuildContext context, String title) {
   );
 }
 
-Widget Item3(BuildContext context, String title) {
+Widget item3(BuildContext context, String title) {
   const time = 'Bloqueada';
   return GestureDetector(
     onTap: () {
@@ -518,7 +415,7 @@ Widget Item3(BuildContext context, String title) {
       );
     },
     child: ListTile(
-      leading: Image(
+      leading: const Image(
         image: AssetImage('assets/tarjeta2.png'),
       ),
       title: Text(title),
@@ -537,7 +434,7 @@ Widget Item3(BuildContext context, String title) {
   );
 }
 
-Widget Item4(BuildContext context, String title) {
+Widget item4(BuildContext context, String title) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -554,8 +451,8 @@ Widget Item4(BuildContext context, String title) {
       title: Text(title),
       subtitle: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
             child: Icon(
               Icons.currency_exchange,
               color:  Color(0xFF6200ed),

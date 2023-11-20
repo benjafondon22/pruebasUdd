@@ -75,6 +75,7 @@ class _HomeAppState extends State<HomeApp> {
             slivers: [
               SliverAppBar(
                 backgroundColor: MyTheme.lightTheme().colorScheme.primary, 
+                
                 leading: const Padding(
                   padding: EdgeInsets.fromLTRB(16, 4, 8, 0),
                   child: CircleAvatar(
@@ -85,7 +86,7 @@ class _HomeAppState extends State<HomeApp> {
                 
                 elevation: 0,
                 
-                title: const Text('Hola BENJA', style: TextStyle(
+                title: const Text('Hola CARLA', style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 24,
                           ),), //título de la app
@@ -105,14 +106,30 @@ class _HomeAppState extends State<HomeApp> {
                 ],
               ),
 
+              //SE ACABA EL TOP BAR
+
               SliverList(
                 delegate: SliverChildListDelegate(
                   [
-                    //CARD 1
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(16, 4, 16, 0),
-                      child: Card1(),
+                    // Stack con Card1 y fondo morado
+                    Stack(
+                      children: [
+                        // Fondo morado
+                        Container(
+                          color: MyTheme.lightTheme().colorScheme.primary,
+                          height: 150,
+                          width: double.infinity,
+                        ),
+
+                        // CARD 1
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                          child: Card1(),
+                        ),
+                      ],
                     ),
+
+                    
 
                     //DIVISOR
                     const Divider(
@@ -143,20 +160,20 @@ class _HomeAppState extends State<HomeApp> {
                       color: Color.fromARGB(255, 255, 255, 255),
                     ),
 
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(16, 4, 16, 0),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
                       child: Row(
                         children: [
                           Expanded(
                             flex: 1, //segunda división de la superficie, ROW
-                            child: Card3(),
+                            child: cardsMedium(context, 'Carga o retira dinero', 'billete'),
                           ),
 
-                          SizedBox(width: 16.0), //separador vertical
+                          const SizedBox(width: 16.0), //separador vertical
 
                           Expanded(
                             flex: 1, //segunda división de la superficie, ROW
-                            child: Card3(),
+                            child: cardsMedium(context, 'Paga con QR', 'qr'),
                           ),
                         ],
                       ),
@@ -168,14 +185,14 @@ class _HomeAppState extends State<HomeApp> {
                         children: [
                           Expanded(
                             flex: 1, //segunda división de la superficie, ROW
-                            child: Card3(),
+                            child: cardsMedium(context, 'Invita y gana', 'regalo'),
                           ),
 
                           const SizedBox(width: 16.0), //separador vertical
 
                           Expanded(
                             flex: 1, //segunda división de la superficie, ROW
-                            child: Card3(),
+                            child: cardsMedium(context, 'Compra en cuotas', 'creditcard'),
                           ),
                         ],
                       ),
@@ -193,7 +210,7 @@ class _HomeAppState extends State<HomeApp> {
                         // Color en formato hexadecimal
                         height: 32.0,
                         width: double.infinity,
-                        child: Text(
+                        child: const Text(
                           'Conoce MACH',
                           style: TextStyle(
                             color: Colors.black,
@@ -209,8 +226,8 @@ class _HomeAppState extends State<HomeApp> {
                       color: Color.fromARGB(255, 255, 255, 255),
                     ),
 
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(16, 4, 16, 0),
                       child: Image(
                         image: AssetImage('assets/mach.png'),
                         height: 140,
@@ -262,8 +279,8 @@ class _HomeAppState extends State<HomeApp> {
                       height: 16, //dos pixeles de alto
                       color: Color.fromARGB(255, 255, 255, 255), //color
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(16, 4, 16, 0),
                       child: Card4(),
                     ),
                     const Divider(
@@ -297,21 +314,21 @@ class _HomeAppState extends State<HomeApp> {
                         children: [
                           Expanded(
                             flex: 1, //segunda división de la superficie, ROW
-                            child: Card3(),
+                            child: cardsMedium(context, 'Link de cobro', 'cadena'),
                           ),
 
                           const SizedBox(width: 16.0), //separador vertical
 
                           Expanded(
                             flex: 1, //segunda división de la superficie, ROW
-                            child: Card3(),
+                            child: cardsMedium(context, 'QR MACH', 'qr'),
                           ),
 
                           const SizedBox(width: 16.0), //separador vertical
 
                           Expanded(
                             flex: 1, //segunda división de la superficie, ROW
-                            child: Card3(),
+                            child: cardsMedium(context, 'A cuentas bancarias', 'atm'),
                           ),
                         ],
                       ),
@@ -325,10 +342,11 @@ class _HomeAppState extends State<HomeApp> {
                       padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
                       child: Row(
                         children: [
-                          Expanded(
-                            flex: 1, //segunda división de la superficie, ROW
-                            child: Card3(),
-                          ),
+                          //Expanded(
+                            //flex: 1, //segunda división de la superficie, ROW
+                            //child: cardsMedium(context, 'Al extranjero', 'lenguaje'),
+                            cardsMedium(context, 'Al extranjero', 'lenguaje'),
+                          //),
                         ],
                       ),
                     ),
@@ -340,8 +358,7 @@ class _HomeAppState extends State<HomeApp> {
           CustomScrollView(
             slivers: [
               SliverAppBar(
-                backgroundColor: const Color(
-                    0xFF6200ed), //color de fondo, a mano, luego se puede integrar a flex_color
+                backgroundColor: MyTheme.lightTheme().colorScheme.primary,
 
                 elevation: 0,
                 title: const Text('Tarjetas'), //título de la app
@@ -357,12 +374,12 @@ class _HomeAppState extends State<HomeApp> {
               SliverList(
                 delegate: SliverChildListDelegate(
                   [
-                    Item(context, 'Saldo: S1000'),
+                    item(context, 'Saldo: S1000'),
                     const Divider(
                       height: 0,
                       color: Color.fromARGB(255, 199, 199, 199), //color
                     ),
-                    Item(context,
+                    item(context,
                         'En dolares: USS2.94        Tipo de cambio: S946'),
                     const Divider(
                       height: 0,
@@ -387,11 +404,11 @@ class _HomeAppState extends State<HomeApp> {
                       height: 32, //dos pixeles de alto
                       color: Color.fromARGB(255, 255, 255, 255), //color
                     ),
-                    Item2(context, 'Tarjeta virtual'),
+                    item2(context, 'Tarjeta virtual'),
                     const Divider(
                       color: Color.fromARGB(255, 199, 199, 199), //color
                     ),
-                    Item3(context, 'Tarjeta fisica'),
+                    item3(context, 'Tarjeta fisica'),
                     const Divider(
                       color: Color.fromARGB(255, 199, 199, 199), //color
                     ),
@@ -418,7 +435,7 @@ class _HomeAppState extends State<HomeApp> {
                       height: 0, //dos pixeles de alto
                       color: Color.fromARGB(255, 255, 255, 255), //color
                     ),
-                    Item4(context, ''),
+                    item4(context, ''),
                     const Divider(
                       color: Color.fromARGB(255, 199, 199, 199), //color
                     ),
@@ -482,6 +499,8 @@ class _HomeAppState extends State<HomeApp> {
         currentIndex: _currentPage,
         onTap: _navigateToPage,
         type: BottomNavigationBarType.fixed,
+        unselectedItemColor: Colors.grey, // Color para elementos inactivos
+        //unselectedIconTheme: Colors.grey, // Color de íconos inactivos
         items: List.generate(
           _screenTitles.length,
           (index) => BottomNavigationBarItem(

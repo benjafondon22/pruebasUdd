@@ -30,6 +30,9 @@ flutter:
   fonts: 
    - family: Gotham
      fonts:
-     - asset: fonts/Gotham.otf
+     - asset: fonts/Gotham-Ultra.otf
+     - asset: fonts/Gotham-Light.otf
+     - asset: fonts/Gotham-Medium.otf
+     - asset: fonts/Gotham-Bold.otf
 
 splashscreen: ^1.3.0

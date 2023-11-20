@@ -7,12 +7,12 @@ class MyTheme {
   static ThemeData lightTheme() {
     return FlexThemeData.light(
       colors: const FlexSchemeColor(
-        primary: Color(0xff6200ee),
-        primaryContainer: Color.fromARGB(255, 255, 255, 255),
+        primary: Color(0xff6200ed),
+        primaryContainer: Color(0xFFFFFFFF),
         secondary: Color(0xFF64FFDA),
-        secondaryContainer: Color(0xffffdbcf),
-        tertiary: Color(0xff006875),
-        tertiaryContainer: Color(0xff95f0ff),
+        secondaryContainer: Color(0xFFFFFFFF),
+        //tertiary: Color(0xff006875),
+        //tertiaryContainer: Color(0xFFFFFFFF),
         error: Color(0xffb00020),
       ),
         subThemesData: const FlexSubThemesData(
@@ -45,7 +45,7 @@ class MyTheme {
         drawerIndicatorRadius: 12.0,
         drawerIndicatorSchemeColor: SchemeColor.primary,
         bottomNavigationBarMutedUnselectedLabel: false,
-        bottomNavigationBarMutedUnselectedIcon: false,
+        bottomNavigationBarMutedUnselectedIcon: true,
         menuRadius: 8.0,
         menuElevation: 3.0,
         menuBarRadius: 0.0,
@@ -54,7 +54,7 @@ class MyTheme {
         navigationBarSelectedLabelSchemeColor: SchemeColor.primary,
         navigationBarMutedUnselectedLabel: false,
         navigationBarSelectedIconSchemeColor: SchemeColor.onPrimary,
-        navigationBarMutedUnselectedIcon: false,
+        navigationBarMutedUnselectedIcon: true,
         navigationBarIndicatorSchemeColor: SchemeColor.primary,
         navigationBarIndicatorOpacity: 1.00,
         navigationBarIndicatorRadius: 12.0,
@@ -71,7 +71,12 @@ class MyTheme {
       useMaterial3: true,
       swapLegacyOnMaterial3: true,
       // To use the Playground font, add GoogleFonts package and uncomment
-      // fontFamily: GoogleFonts.notoSans().fontFamily,
+      //fontFamily: GoogleFonts.notoSans().fontFamily,
+      textTheme: TextTheme(
+          bodyLarge: TextStyle(fontFamily: 'Gotham', fontSize: 16.0),
+          bodyMedium: TextStyle(fontFamily: 'Gotham', fontSize: 14.0),
+          // Agrega estilos para otros tipos de texto según sea necesario
+        ),
     );
   }
 
@@ -112,7 +117,7 @@ class MyTheme {
         drawerIndicatorRadius: 12.0,
         drawerIndicatorSchemeColor: SchemeColor.primary,
         bottomNavigationBarMutedUnselectedLabel: false,
-        bottomNavigationBarMutedUnselectedIcon: false,
+        //bottomNavigationBarMutedUnselectedIcon: false,
         menuRadius: 8.0,
         menuElevation: 3.0,
         menuBarRadius: 0.0,
